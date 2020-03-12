@@ -1,0 +1,28 @@
+{
+  "name": "oauth_tut",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --watch routes server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexey-korablin/OAuth_tut.git"
+  },
+  "keywords": [],
+  "author": "'Alexey_Korablin' <'Alexey_Korablin@epam.com'>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexey-korablin/OAuth_tut/issues"
+  },
+  "homepage": "https://github.com/alexey-korablin/OAuth_tut#readme",
+  "dependencies": {
+    "ejs": "^3.0.1",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
