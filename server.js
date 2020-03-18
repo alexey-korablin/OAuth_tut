@@ -2,8 +2,18 @@ const express = require('express');
 
 const authRoutes = require('./routes/auth-routes');
 const passportSetup = require('./config/passport-setup');
+const db = require('./db');
 
 // empty comment
+
+db.on('open', () => {
+  console.log('=> connected to mongodb');
+});
+
+db.on(
+  'error',
+  console.error.bind(console, 'MongoDB connection error: '),
+);
 
 const app = express();
 const PORT = 5000;
