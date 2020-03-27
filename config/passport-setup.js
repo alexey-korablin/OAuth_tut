@@ -1,5 +1,6 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const User = require('../models/User');
 
 const keys = require('./keys');
 
@@ -16,6 +17,20 @@ passport.use(
       // passport callback function
       console.log(`Passport callback function fired`);
       console.log(profile);
+      User.findOne({ googleId: profile.id }).then(currentUser => {
+        if (currentUser) {
+          console.log('Existing user => ', currentUser);
+        } else {
+          new User({
+            googleId: profile.id,
+            name: profile.displayName,
+          })
+            .save()
+            .then(user => {
+              console.log(user);
+            });
+        }
+      });
     },
   ),
 );
