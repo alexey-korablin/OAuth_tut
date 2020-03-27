@@ -4,6 +4,17 @@ const User = require('../models/User');
 
 const keys = require('./keys');
 
+passport.serializeUser((user, done) => {
+  // done is error-first function
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  User.findById(id).then(user => {
+    done(null, user);
+  });
+});
+
 // register strategy middleware
 passport.use(
   new GoogleStrategy(
@@ -20,6 +31,8 @@ passport.use(
       User.findOne({ googleId: profile.id }).then(currentUser => {
         if (currentUser) {
           console.log('Existing user => ', currentUser);
+          // done is error-first function
+          done(null, currentUser);
         } else {
           new User({
             googleId: profile.id,
@@ -28,6 +41,7 @@ passport.use(
             .save()
             .then(user => {
               console.log(user);
+              done(null, user);
             });
         }
       });
