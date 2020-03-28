@@ -28,7 +28,7 @@ const PORT = 5000;
 app.use(
   cookieSession({
     maxAge: 86400000,
-    keys: keys.session.cookieKey,
+    keys: [keys.sessions.cookieKey],
   }),
 );
 //  initialize passport
