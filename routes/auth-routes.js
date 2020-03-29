@@ -23,7 +23,8 @@ router.get(
   '/google/redirect',
   passport.authenticate('google'),
   (req, res) => {
-    res.send(req.user || 'you reached the callback URI');
+    // res.send(req.user || 'you reached the callback URI');
+    res.redirect('/profile/');
   },
 );
 

@@ -3,6 +3,7 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 
 const authRoutes = require('./routes/auth-routes');
+const profileRoutes = require('./routes/profile-routes');
 const passportSetup = require('./config/passport-setup');
 const db = require('./db');
 const keys = require('./config/keys');
@@ -39,7 +40,10 @@ app.use(passport.session());
 app.set('view engine', 'ejs');
 
 // set up routes
+// routes handle auth
 app.use('/auth', authRoutes);
+// routes handle profile
+app.use('/profile', profileRoutes);
 
 app.get('/', (req, res) => {
   res.render('home');
