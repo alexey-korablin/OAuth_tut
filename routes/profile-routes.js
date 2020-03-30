@@ -9,7 +9,7 @@ const authCheck = (req, res, next) => {
   }
 };
 
-// the route for the authenticated users' profiles
+// the route to the user's profile page
 router.get('/', authCheck, (req, res) => {
   res.render('profile', { user: req.user });
 });
