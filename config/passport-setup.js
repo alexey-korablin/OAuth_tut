@@ -25,6 +25,8 @@ passport.use(
       clientSecret: keys.google.clientSecret,
     },
     (accessToken, refreshToken, profile, done) => {
+      console.log('accessToken ==>', accessToken);
+      console.log('refreshToken ==>', refreshToken);
       // passport callback function
       console.log(`Passport callback function fired`);
       console.log(profile);
@@ -37,6 +39,7 @@ passport.use(
           new User({
             googleId: profile.id,
             name: profile.displayName,
+            thumbnail: profile._json.picture,
           })
             .save()
             .then(user => {
